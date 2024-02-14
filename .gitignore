@@ -1,5 +1,7 @@
 # Prerequisites
 *.d
+*.c
+co
 
 # Object files
 *.o
