@@ -30,6 +30,11 @@ void ArrayInit (Array *a, size_t bytes); // Must use ArrayFree
 void ArrayAdd (Array *a, Type element);
 void ArrayClear (Array *a); // Must use ArrayFree
 Array ArrayClone (Array *a); // Must use ArrayFree
+Type ArrayGet (Array *a, size_t index);
+bool ArrayIsEmpty (Array *a);
+void ArrayRemove (Array *a, size_t index);
+void ArraySet (Array *a, size_t index, Type element);
+size_t ArraySize (Array *a);
 void ArrayFree (Array *a);
 
 void ArrayInit (Array *a, size_t bytes) {
@@ -58,6 +63,7 @@ void ArrayClear (Array *a) {
 Array ArrayClone (Array *a) {
      Array b = {0};
      b.data = malloc (sizeof(Type) * a->size);
+     b.capacity = a->capacity;
      for (size_t i = 0; i < a->size; ++i) {
           if (a->data[i].Int != 0) {
                b.data[b.size++].Int = a->data[i].Int;
@@ -76,6 +82,29 @@ Array ArrayClone (Array *a) {
           }
      }
      return b;
+}
+
+Type ArrayGet (Array *a, size_t index) {
+     return a->data[index];
+}
+
+bool ArrayIsEmpty (Array *a) {
+     return a->size == 0;
+}
+
+void ArrayRemove (Array *a, size_t index) {
+     for (size_t i = index; i < a->size; ++i) {
+          a->data[i] = a->data[i+1];
+     }
+     a->size--;
+}
+
+void ArraySet (Array *a, size_t index, Type element) {
+     a->data[index] = element;
+}
+
+size_t ArraySize (Array *a) {
+     return a->size;
 }
 
 void ArrayFree (Array *a) {
