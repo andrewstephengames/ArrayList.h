@@ -26,16 +26,16 @@ typedef struct {
 #define crash assert (a->data != NULL && "Buy more RAM lol")
 #define cast (void*)
 
-void ArrayInit (Array *a, size_t bytes); // Must use ArrayFree
-void ArrayAdd (Array *a, Type element);
-void ArrayClear (Array *a); // Must use ArrayFree
-Array ArrayClone (Array *a); // Must use ArrayFree
-Type ArrayGet (Array *a, size_t index);
-bool ArrayIsEmpty (Array *a);
-void ArrayRemove (Array *a, size_t index);
-void ArraySet (Array *a, size_t index, Type element);
-size_t ArraySize (Array *a);
-void ArrayFree (Array *a);
+ALDEF void ArrayInit (Array *a, size_t bytes); // Must use ArrayFree
+ALDEF void ArrayAdd (Array *a, Type element);
+ALDEF void ArrayClear (Array *a); // Must use ArrayFree
+ALDEF Array ArrayClone (Array *a); // Must use ArrayFree
+ALDEF Type ArrayGet (Array *a, size_t index);
+ALDEF bool ArrayIsEmpty (Array *a);
+ALDEF void ArrayRemove (Array *a, size_t index);
+ALDEF void ArraySet (Array *a, size_t index, Type element);
+ALDEF size_t ArraySize (Array *a);
+ALDEF void ArrayFree (Array *a);
 
 void ArrayInit (Array *a, size_t bytes) {
      a->data = malloc (sizeof(Type) * bytes);
